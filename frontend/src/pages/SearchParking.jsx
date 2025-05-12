@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 const SearchParking = () => {
   return (
-    <div>SearchParking</div>
+    <div>
+      <Navbar />
+    </div>
   )
 }
 

@@ -11,3 +11,6 @@
   box-sizing: border-box;
 }
 
+.active hr {
+  @apply opacity-100;
+}
