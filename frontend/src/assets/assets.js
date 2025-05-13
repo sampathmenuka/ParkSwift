@@ -43,3 +43,28 @@ export const faqItems = [
       answer: "If you need to extend your stay, you can do so through the app, subject to availability. If you overstay without extending, additional charges may apply based on the hourly rate of the parking spot."
     },
   ];
+
+
+export const testimonials = [
+  {
+    id: 1,
+    content: "ParkSwift saved me so much time and stress. I found a parking spot near my downtown office in seconds!",
+    author: "Sarah Johnson",
+    role: "Marketing Director",
+    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: 2,
+    content: "As a space owner, I'm earning extra income from my unused driveway. The platform is so easy to use!",
+    author: "Michael Chen",
+    role: "Property Owner",
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+  {
+    id: 3,
+    content: "The contactless entry feature is amazing. I just use my phone to access the garage - no tickets, no hassle.",
+    author: "Emily Rodriguez",
+    role: "Frequent Traveler",
+    imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+];
