@@ -29,22 +29,22 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className='hidden md:flex items-center gap-4'>
-            <NavLink to="/search" className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+            <NavLink to="/search" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
               Find Parking
               <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
             </NavLink>
 
-            <NavLink to="/about" className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+            <NavLink to="/about" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
               About
               <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
             </NavLink>
 
-            <NavLink to="/faq" className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+            <NavLink to="/faq" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
               FAQ
               <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
             </NavLink>
 
-            <NavLink to="/contact" className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+            <NavLink to="/contact" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
               Contact
               <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
             </NavLink>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
             {
               isAuthenticated && (
-                <NavLink to="/dashboard" className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+                <NavLink to="/dashboard" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
                   Dashboard
                   <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
                 </NavLink>
@@ -68,7 +68,7 @@ const Navbar = () => {
                   Logout
                 </button>
               ) : (
-                <NavLink to='/login' >
+                <NavLink to='/login' onClick={() => scrollTo(0,0)} >
                   <button className='flex items-center outline-none px-4 py-2 bg-indigo-500 rounded-lg text-white hover:bg-indigo-600 transition-all duration-300'>
                     <UserRound className="h-4 w-4 mr-2" />
                     Account

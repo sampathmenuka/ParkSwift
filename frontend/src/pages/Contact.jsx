@@ -168,7 +168,7 @@ const Contact = () => {
             </div>
 
             <div className='text-center mt-8'>
-              <Link to='/faq' className='inline-flex items-center gap-2 text-indigo-500'>
+              <Link onClick={() => scrollTo(0, 0)} to='/faq' className='inline-flex items-center gap-2 text-indigo-500'>
                 Visit our full FAQ page
                 <ArrowRight className='w-5 h-5' />
               </Link>
