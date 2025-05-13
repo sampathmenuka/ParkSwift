@@ -6,7 +6,7 @@ const FeatureSection = () => {
     <div className='py-16 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='text-center'>
-          <h2 className='text-3xl font-semibold sm:text-4xl'>Park with peace mind</h2>
+          <h2 className='text-3xl font-semibold sm:text-4xl text-gray-800'>Park with peace mind</h2>
           <hr className='w-[60px] border-2 mx-auto border-indigo-500 rounded-xl mt-2'/>
           <p className='mt-5 max-w-2xl mx-auto text-xl text-gray-500'>
             Our platform makes finding and booking parking spaces simple and secure.

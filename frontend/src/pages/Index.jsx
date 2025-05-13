@@ -14,6 +14,8 @@ const Index = () => {
 
       {/* Hero section  */}
 
+      
+
       <FeatureSection />
 
       <HowItWorks />
