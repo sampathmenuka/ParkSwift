@@ -18,8 +18,6 @@ const Index = () => {
 
       <HowItWorks />
 
-      <HowItWorks />
-
       <Testimonials />
 
       <CallToAction />

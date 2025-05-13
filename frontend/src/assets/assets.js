@@ -1,4 +1,4 @@
-
+import {Clock, CreditCard, Smartphone, ShieldCheck} from 'lucide-react'
 
 
 export const faqItems = [
@@ -68,3 +68,27 @@ export const testimonials = [
     imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
 ];
+
+
+export const features = [
+  {
+    name: 'Instant Booking',
+    description: 'Reserve parking spots in advance with real-time availability updates.',
+    icon: Clock,
+  },
+  {
+    name: 'Secure Payments',
+    description: 'Enjoy peace of mind with our encrypted payment processing system.',
+    icon: CreditCard,
+  },
+  {
+    name: 'Contactless Entry',
+    description: 'Use your phone to access parking locations without physical contact.',
+    icon: Smartphone,
+  },
+  {
+    name: 'Insurance Coverage',
+    description: 'Every booking includes basic insurance protection for your peace of mind.',
+    icon: ShieldCheck,
+  },
+]
