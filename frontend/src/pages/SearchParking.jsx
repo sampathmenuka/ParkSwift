@@ -1,8 +1,15 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const SearchParking = () => {
   return (
-    <div>SearchParking</div>
+    <div>
+      <Navbar />
+        SearchParking
+
+      <Footer />
+    </div>
   )
 }
 

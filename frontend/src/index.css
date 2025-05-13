@@ -11,3 +11,10 @@
   box-sizing: border-box;
 }
 
+body{
+  scroll-behavior: smooth;
+}
+
+.active hr {
+  @apply opacity-100;
+}
