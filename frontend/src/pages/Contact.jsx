@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
@@ -14,6 +14,14 @@ const Contact = () => {
   const [topic, setTopic] = useState('general');
 
   const [loading, setLoading] = useState(false);
+
+  const [isVisible, setIsVisible] = useState(false); // For fade-in animation on load
+  
+    // Trigger fade-in effect when the component mounts or search results change
+    useEffect(() => {
+      setIsVisible(false); // Reset visibility for the animation
+      setTimeout(() => setIsVisible(true), 100); // Slight delay to trigger the animation
+    }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,7 +100,7 @@ const Contact = () => {
             </div>
 
             {/* contact form  */}
-            <div className='lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-md mb-8'>
+            <div className={`lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-md mb-8 ${isVisible ? 'opacity-100 translate-y-0': 'opacity-0 translate-y-4'} transition-all duration-500 transform ease-in-out`}>
               <h2 className='text-xl font-bold text-gray-700 mb-6'>
                 Send Us a Message
               </h2>
@@ -144,7 +152,7 @@ const Contact = () => {
 
           {/* FAQ section  */}
 
-          <div className="mt-16 bg-gray-50 rounded-lg p-8 shadow">
+          <div className="mt-16 bg-gray-50 rounded-lg p-8 shadow-md">
             <h2 className='text-2xl font-bold text-gray-700 mb-7 text-center'>
               Common Questions
               <hr className='w-[60px] mx-auto border-2 rounded-lg border-indigo-500 mt-1'/>

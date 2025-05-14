@@ -14,7 +14,7 @@ const FAQ = () => {
   useEffect(() => {
     setIsVisible(false); // Reset visibility for the animation
     setTimeout(() => setIsVisible(true), 100); // Slight delay to trigger the animation
-  }, [searchItem]);
+  }, []);
 
   const filteredFaqs = searchItem
     ? faqItems.filter(
@@ -45,13 +45,10 @@ const FAQ = () => {
             </div>
 
             <div className="flex items-center mt-4 md:mt-0">
-              <HelpCircle className="w-5 h-5 mr-2 text-indigo-500 transition-transform duration-300 hover:scale-110" />
+              <HelpCircle className="w-5 h-5 mr-2 text-indigo-500 transition-transform duration-300 hover:scale-105" />
               <span className="text-sm text-gray-600">
                 Can't find what you're looking for?
-                <Link
-                  to="/contact"
-                  className="ml-1 text-indigo-500 hover:underline hover:text-indigo-600 transition-colors duration-300"
-                >
+                <Link to="/contact" className="ml-1 text-indigo-500 hover:underline hover:text-indigo-600 transition-colors duration-300" >
                   Contact us
                 </Link>
               </span>
@@ -64,7 +61,7 @@ const FAQ = () => {
               value={searchItem}
               onChange={(e) => setSearchItem(e.target.value)}
               placeholder="Search question..."
-              className="py-2 px-3 rounded-md border-2 max-w-md sm:w-1/2 placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300 ease-in-out focus:border-indigo-400 focus:shadow-lg"
+              className="py-2 px-3 rounded-md border-2 max-w-md sm:w-1/2 placeholder-gray-400 text-gray-800 outline-none focus:ring-2 focus:ring-indigo-400 transition-all duration-300 ease-in-out focus:border-indigo-400 focus:shadow-lg"
             />
           </div>
 
@@ -81,7 +78,7 @@ const FAQ = () => {
                     className="flex justify-between items-center w-full p-4 text-left transition-colors duration-300 hover:bg-gray-100"
                     onClick={() => toggle(index)}
                   >
-                    <span className="text-lg font-medium">{item.question}</span>
+                    <span className="text-lg text-gray-700 font-medium">{item.question}</span>
                     {openIndex === index ? (
                       <ChevronUp className="text-gray-600 transition-transform duration-300" />
                     ) : (
