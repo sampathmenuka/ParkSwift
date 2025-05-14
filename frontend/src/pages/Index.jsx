@@ -15,7 +15,7 @@ const Index = () => {
 
       {/* Hero section  */}
 
-      <div className='pt-16 pb-20 bg-gradient-to-br from-indigo-500 to-blue-700 min-h-screen'>
+      <div className='pt-16 pb-20 bg-gradient-to-br from-indigo-500 to-blue-800 min-h-screen'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
           <h1 className='text-4xl font-extrabold tracking-wider text-white sm:text-5xl md:text-7xl mt-20'>
             <span className='block'>Parking made simple</span>
