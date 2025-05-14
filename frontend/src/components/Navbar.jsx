@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/AuthContext';
 
 const Navbar = () => {
 
-  const { isAuthenticated, logout } = useContext(AuthContext)
+  const { isAuthenticated, user, logout } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
@@ -16,6 +16,21 @@ const Navbar = () => {
     logout();
     navigate('/');
   }
+
+  const getDashboardLink = () => {
+    if(!user) return '/dashboard'
+
+    switch (user.role) {
+      case 'admin':
+        return '/dashboard/admin'
+      case 'owner':
+        return '/dashboard/owner'
+      default:
+        return '/dashboard/user'
+    }
+  }
+
+  const dashboardLink = getDashboardLink();
 
   return (
     <div className='bg-white border-b border-gray-300 fixed w-full z-20 shadow-md'>
@@ -52,8 +67,13 @@ const Navbar = () => {
 
             {
               isAuthenticated && (
-                <NavLink to="/dashboard" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
-                  Dashboard
+                <NavLink to={dashboardLink} onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+                  {
+                    user.role === 'admin' ? "Admin Dashboard" :
+                    user.role === 'owner' ? "Owner Dashboard" :
+                    "Dashboard"
+                  }
+
                   <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
                 </NavLink>
               )
@@ -125,9 +145,12 @@ const Navbar = () => {
                   </NavLink>
 
                   {isAuthenticated && (
-                    <NavLink onClick={() => setShowMenu(false)} to='/dashboard'>
+                    <NavLink onClick={() => setShowMenu(false)} to={dashboardLink}>
                       <p className='px-4 py-2 rounded-md inline-block hover:bg-indigo-500 hover:text-white transition-all duration-300'>
-                        Dashboard
+                        {
+                          user?.role === 'admin' ? 'Admin Dashboard' :
+                          user?.role === 'owner' ? 'Owner Dashboard' : 'Dashboard'
+                        }
                       </p>
                     </NavLink>
                   )}
