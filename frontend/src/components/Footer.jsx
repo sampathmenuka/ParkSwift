@@ -20,29 +20,29 @@ const Footer = () => {
   }
 
   return (
-    <footer className='text-white bg-gradient-to-tr from-indigo-300 to-gray-100'>
+    <footer className='text-white bg-gradient-to-tr from-gray-900 to-gray-800'>
       <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
           <div>
             <NavLink to='/' onClick={() => scrollTo(0,0)} >
               <img src={logo} alt="logo" className='w-48' /> 
             </NavLink>
-            <p className='mt-4 text-sm text-gray-600 sm:w-[220px]'>
+            <p className='mt-4 text-sm text-gray-400 sm:w-[220px]'>
               Making parking simple, secure, and seamless.
             </p> 
           </div>
 
           <div>
-            <h3 className='text-sm font-semibold uppercase text-gray-800 tracking-wider'>Company</h3>
+            <h3 className='text-sm font-semibold uppercase text-gray-200 tracking-wider'>Company</h3>
             <ul className='flex flex-col mt-4 gap-3'>
               <li>
-                <NavLink to="/about" onClick={() => scrollTo(0,0)} className="text-base text-gray-600 hover:text-indigo-600 font-medium transition-all duration-300" >
+                <NavLink to="/about" onClick={() => scrollTo(0,0)} className="text-base text-gray-400 hover:text-indigo-500 font-medium transition-all duration-300" >
                   About Us
                 </NavLink>
               </li>
 
               <li>
-                <NavLink to="/contact" onClick={() => scrollTo(0,0)} className="text-base text-gray-600 hover:text-indigo-600 font-medium transition-all duration-300" >
+                <NavLink to="/contact" onClick={() => scrollTo(0,0)} className="text-base text-gray-400 hover:text-indigo-500 font-medium transition-all duration-300" >
                   Contact
                 </NavLink>
               </li>            
@@ -50,20 +50,20 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className='text-sm font-semibold uppercase text-gray-800 tracking-wider'>SUPPORT</h3>
+            <h3 className='text-sm font-semibold uppercase text-gray-200 tracking-wider'>SUPPORT</h3>
             <ul className='flex flex-col mt-4 gap-3'>
               <li>
-                <NavLink to="/faq" onClick={() => scrollTo(0,0)} className="text-base text-gray-600 hover:text-indigo-600 font-medium transition-all duration-300" >
+                <NavLink to="/faq" onClick={() => scrollTo(0,0)} className="text-base text-gray-400 hover:text-indigo-500 font-medium transition-all duration-300" >
                   FAQ
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/help" onClick={() => scrollTo(0,0)} className="text-base text-gray-600 hover:text-indigo-600 font-medium transition-all duration-300" >
+                <NavLink to="/help" onClick={() => scrollTo(0,0)} className="text-base text-gray-400 hover:text-indigo-500 font-medium transition-all duration-300" >
                   Help Center
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/terms-privacy" onClick={() => scrollTo(0,0)} className="text-base text-gray-600 hover:text-indigo-600 font-medium transition-all duration-300" >
+                <NavLink to="/terms-privacy" onClick={() => scrollTo(0,0)} className="text-base text-gray-400 hover:text-indigo-500 font-medium transition-all duration-300" >
                   Terms & Privacy
                 </NavLink>
               </li>
@@ -71,8 +71,8 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className='text-sm font-semibold uppercase text-gray-800 tracking-wider'>SIGN UP</h3>
-            <p className='mt-3 text-base text-gray-600'>
+            <h3 className='text-sm font-semibold uppercase text-gray-200 tracking-wider'>SIGN UP</h3>
+            <p className='mt-3 text-base text-gray-400'>
               Get updates on new parking spots and features.
             </p>
             <form onSubmit={submitHandler} className='mt-4 sm:flex sm:max-w-md'>
@@ -90,7 +90,7 @@ const Footer = () => {
             &copy; {year} ParkSwift. All rights reserved.
           </p>
 
-          <div className='flex items-center mt-4 gap-3 sm:mt-0'>
+          <div className='flex items-center mt-4 gap-3 md:mt-0'>
             <div className='bg-gray-600 rounded-full p-2 hover:bg-indigo-600 flex items-center justify-center transition-all duration-300'>
               <NavLink to='/'>
                 <Facebook className='w-5 h-5' />
