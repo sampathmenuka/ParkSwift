@@ -63,13 +63,13 @@ const Navbar = () => {
 
             {
               isAuthenticated ? (
-                <button onClick={handleLogout} className='flex items-center outline-none px-4 py-2 bg-indigo-500 rounded-lg text-white hover:bg-indigo-600 transition-all duration-300'>
+                <button onClick={handleLogout} className='flex items-center outline-none px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500 transition-all duration-300'>
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
                 </button>
               ) : (
                 <NavLink to='/login' onClick={() => scrollTo(0,0)} >
-                  <button className='flex items-center outline-none px-4 py-2 bg-indigo-500 rounded-lg text-white hover:bg-indigo-600 transition-all duration-300'>
+                  <button className='flex items-center outline-none px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500 transition-all duration-300'>
                     <UserRound className="h-4 w-4 mr-2" />
                     Account
                   </button>
