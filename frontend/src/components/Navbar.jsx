@@ -18,7 +18,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='bg-white border-b border-gray-300 fixed w-full z-20 shadow-sm'>
+    <div className='bg-white border-b border-gray-300 fixed w-full z-20 shadow-md'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between h-16'>
           <div className='flex justify-center items-center'>
@@ -63,13 +63,13 @@ const Navbar = () => {
 
             {
               isAuthenticated ? (
-                <button onClick={handleLogout} className='flex items-center outline-none px-4 py-2 bg-indigo-500 rounded-lg text-white hover:bg-indigo-600 transition-all duration-300'>
+                <button onClick={handleLogout} className='flex items-center outline-none px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500 transition-all duration-300'>
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
                 </button>
               ) : (
                 <NavLink to='/login' onClick={() => scrollTo(0,0)} >
-                  <button className='flex items-center outline-none px-4 py-2 bg-indigo-500 rounded-lg text-white hover:bg-indigo-600 transition-all duration-300'>
+                  <button className='flex items-center outline-none px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500 transition-all duration-300'>
                     <UserRound className="h-4 w-4 mr-2" />
                     Account
                   </button>
