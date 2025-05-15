@@ -49,7 +49,14 @@ export const register = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    return res.json({success: true})
+    return res.json({success: true, user: {
+      name:user.name,
+      email:user.email,
+      phone:user.phone,
+      role:user.role, 
+      vehicleType:user.vehicleType, 
+      licensePlate:user.licensePlate
+    }})
 
   } catch (error) {
       console.log(error.message);
@@ -57,7 +64,7 @@ export const register = async (req, res) => {
   }
 }
 
-// login
+// login (success)
 export const login = async (req, res) => {
 
   const { email, password, role } = req.body
@@ -89,7 +96,11 @@ export const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.json({success: true});
+    res.json({success: true, user: {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    }});
     
   } catch (error) {
       console.log(error.message);
@@ -113,6 +124,25 @@ export const logout = async (req, res) => {
   } catch (error) {
       console.log(error.message);
       res.json({success: false, message: error.message})
+  }
+}
+
+// check if user is authenticated (success)
+export const isAuthenticated = async (req, res) => {
+
+  try {
+    const user = req.user;
+
+    return res.json({ success: true, user: {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phone: user.phone,
+      vehicleType: user.vehicleType,
+      licensePlate: user.licensePlate
+    } }) // changed
+  } catch (error) {
+      return res.json({success:false, message:error.message})
   }
 }
 
