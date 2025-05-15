@@ -34,6 +34,11 @@ const Login = () => {
 
       if(state === 'Sign up') {
 
+        if (role === 'admin') {
+          toast.error("Admin registration is not allowed.");
+          return;
+        }
+
         const {data} = await axios.post(backendUrl + '/api/auth/register', {name, email, password, confirmPassword, phone, role, vehicleType, licensePlate })
 
         if (data.success) {
@@ -92,7 +97,7 @@ const Login = () => {
               Log in
             </button>
 
-            <button type='button' onClick={() => setState('Sign up')} className={`w-full flex justify-center py-2 px-4 border text-sm rounded-md shadow-sm font-medium focus:outline-none focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 ${state === 'Sign up' ? 'border-transparent bg-indigo-500 text-white hover:bg-indigo-600' : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'}`}>Register</button>
+            <button type='button' onClick={() => setState('Sign up')} className={`w-full flex justify-center py-2 px-4 border text-sm rounded-md shadow-sm font-medium focus:outline-none focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 ${state === 'Sign up' ? 'border-transparent bg-indigo-500 text-white hover:bg-indigo-600' : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'} ${role==='admin' ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={role === 'admin'}>Register</button>
           </div>
 
           <form onSubmit={onSubmitHandler}>
