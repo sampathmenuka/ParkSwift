@@ -1,54 +1,66 @@
 import { createContext, useEffect, useState } from "react";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
+
+axios.defaults.withCredentials = true;
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = (props) => {
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true)
 
 
-  // login function
-  const login = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
-    setIsAuthenticated(true);
-  }
+  const getAuthState = async () => {
 
-  // logout function
-  const logout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-    setIsAuthenticated(false);
-  }
+    try {
+      const { data } = await axios.get(backendUrl + '/api/auth/is-auth');
 
-  // check if a user is stored in localstorage when app loads 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+      if (data.success) {
+        setIsAuthenticated(true);
 
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true)
+        if (data.user) {
+          setUser(data.user);
+        }
+      } else {
+          setIsAuthenticated(false);
+          setUser(null);
+          toast.error(data.message)
+      }
+
+    } catch (error) {
+        toast.error("Authentication check failed: " + error.message);
+        setIsAuthenticated(false);
+        setUser(null);
+    } finally{
+        setLoading(false);
     }
-  }, []);
-
-  
-  const value = {
-    user, setUser,
-    isAuthenticated, setIsAuthenticated,
-    login, logout,
   };
 
+  useEffect(() => {
+    getAuthState();
+  },[]);
 
 
+  const value = {
+    user, setUser,
+    isAuthenticated,
+    getAuthState,
+    backendUrl,
+    setIsAuthenticated,
+    loading
+  };
 
   return (
-    <AuthContext.Provider value ={ value }>
+    <AuthContext.Provider value={value}>
       {props.children}
     </AuthContext.Provider>
-  )
-}
-
+  );
+};
 
 export default AuthContextProvider;

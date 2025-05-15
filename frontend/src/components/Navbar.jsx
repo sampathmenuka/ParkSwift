@@ -3,19 +3,69 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.png'
 import { Menu, UserRound, LogOut, X } from 'lucide-react'
 import { AuthContext } from '../contexts/AuthContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
-  const { isAuthenticated, logout } = useContext(AuthContext)
+  const { backendUrl, setIsAuthenticated, isAuthenticated, user } = useContext(AuthContext)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false)
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
+  const handleLogout = async () => {
+    
+    try {
+      axios.defaults.withCredentials = true
+
+      const {data} = await axios.post(backendUrl + '/api/auth/logout')
+      
+      if(data.success) {
+        setIsAuthenticated(false);
+        navigate('/');
+        toast.success(data.message);
+      } 
+
+    } catch (error) {
+        toast.error(error.message)
+    }
   }
+
+
+  const getDashboardLabel = () => {
+
+    switch (user?.role) {
+      case 'user':
+        return 'Dashboard';
+      case 'admin':
+        return 'Admin Dashboard';
+      case 'owner':
+        return 'Owner Dashboard';
+      default:
+        return null
+    }
+  }
+
+
+  const getDashboardLink = () => {
+
+    switch (user?.role) {
+      case 'user':
+        return '/dashboard/user'
+      case 'admin':
+        return '/dashboard/admin'
+      case 'owner':
+        return '/dashboard/owner'
+      default:
+        return null
+    }
+  }
+
+  
+  const dashboardLabel = getDashboardLabel();
+  const dashboardLink = getDashboardLink();
+
 
   return (
     <div className='bg-white border-b border-gray-300 fixed w-full z-20 shadow-md'>
@@ -52,8 +102,10 @@ const Navbar = () => {
 
             {
               isAuthenticated && (
-                <NavLink to="/dashboard" onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
-                  Dashboard
+                <NavLink to={dashboardLink} onClick={() => scrollTo(0,0)} className="text-gray-600 hover:text-indigo-500 px-3 py-2 font-medium transition-all duration-300 group">
+
+                  {dashboardLabel}
+
                   <hr className='border-none outline-none h-0.5 bg-indigo-400 w-3/5 mx-auto opacity-0 group-hover:opacity-100 transition-all duration-300'/>
                 </NavLink>
               )
@@ -125,9 +177,9 @@ const Navbar = () => {
                   </NavLink>
 
                   {isAuthenticated && (
-                    <NavLink onClick={() => setShowMenu(false)} to='/dashboard'>
+                    <NavLink onClick={() => setShowMenu(false)} to={dashboardLink}>
                       <p className='px-4 py-2 rounded-md inline-block hover:bg-indigo-500 hover:text-white transition-all duration-300'>
-                        Dashboard
+                        {dashboardLabel}
                       </p>
                     </NavLink>
                   )}

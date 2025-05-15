@@ -9,7 +9,6 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import TermsPrivacy from './pages/TermsPrivacy';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
@@ -17,19 +16,11 @@ import Payment from './pages/Payment';
 import SearchParking from './pages/SearchParking'
 import SlotBooking from './pages/SlotBooking'
 import NotFound from './pages/NotFound'
+import ResetPassword from './pages/ResetPassword';
 
 
 const queryClient = new QueryClient();
 
-const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('user') !== null;
-  
-  if (!isAuthenticated) {
-    return <Navigate to='/login' />;
-  }
-  
-  return children;
-};
 
 const App = () => {
   return (
@@ -42,34 +33,14 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/terms-privacy' element={<TermsPrivacy />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/dashboard' element={
-          <ProtectedRoute>
-            <UserDashboard />
-          </ProtectedRoute>
-        } />
-        <Route path='/dashboard/user' element={
-          <ProtectedRoute>
-            <UserDashboard />
-          </ProtectedRoute>
-        } />
-        <Route path='/dashboard/owner' element={
-          <ProtectedRoute>
-            <OwnerDashboard />
-          </ProtectedRoute>
-        } />
-        <Route path='/dashboard/admin' element={
-          <ProtectedRoute>
-            <AdminDashboard />
-          </ProtectedRoute>
-        } />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/dashboard' element={<UserDashboard />} />
+        <Route path='/dashboard/user' element={<UserDashboard />} />
+        <Route path='/dashboard/owner' element={ <OwnerDashboard /> } />
+        <Route path='/dashboard/admin' element={<AdminDashboard />} />
         <Route path="/search" element = {<SearchParking />} />
         <Route path="/booking" element = {<SlotBooking />} />
-        <Route path='/payment' element={
-          <ProtectedRoute>
-            <Payment />
-          </ProtectedRoute>
-        } />
+        <Route path='/payment' element={<Payment />} />
         <Route path="*" element = {<NotFound />} />
       </Routes>
     </QueryClientProvider>
