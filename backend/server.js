@@ -3,8 +3,12 @@ import cors from 'cors'
 import 'dotenv/config'
 import cookieParser from 'cookie-parser'
 import connectDB from './config/mongodb.js'
+
 import authRouter from './routes/authRoutes.js'
 import dashboardRouter from './routes/dashboardRoutes.js'
+import userRouter from './routes/userRoutes.js'
+import bookingRouter from './routes/bookingRoutes.js'
+import notificationRouter from './routes/notificationRoutes.js'
 
 
 const app = express();
@@ -25,6 +29,12 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRouter);
 
 app.use('/api/dashboard', dashboardRouter);
+
+app.use('/api/user', userRouter);
+
+app.use('/api/bookings', bookingRouter);
+
+app.use('/api/notifications', notificationRouter);
 
 
 
