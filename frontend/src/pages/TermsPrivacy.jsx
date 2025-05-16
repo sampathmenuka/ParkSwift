@@ -39,6 +39,7 @@ const TermsPrivacy = () => {
                   <h2 className='text-2xl font-semibold text-indigo-500'>
                     Terms of Service
                   </h2>
+
                   <h3 className='text-xl font-medium mt-6 text-gray-800'>
                     1. Service Usage
                   </h3>
@@ -74,6 +75,7 @@ const TermsPrivacy = () => {
                   <h2 className='text-2xl font-semibold text-indigo-500'>
                     Privacy Policy
                   </h2>
+
                   <h3 className='text-xl font-medium mt-6 text-gray-800'>
                     1. Information Collection
                   </h3>
@@ -107,7 +109,7 @@ const TermsPrivacy = () => {
           }
           
 
-          <div className='bg-indigo-200 border border-indigo-300 rounded-lg p-6 mb-6 shadow'>
+          <div className='bg-gradient-to-tl from-indigo-400 border border-indigo-300 rounded-lg p-6 mb-6 shadow'>
             <h3 className='tracking-wide text-xl font-semibold text-gray-800 mb-4'>
               Have Questions?
             </h3>
