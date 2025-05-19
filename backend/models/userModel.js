@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 import validator from 'validator'
 
 const userSchema = new mongoose.Schema({
-  name: {type: String, trim: true, required: true},
+  name: {type: String, trim: true},
   email: {type: String, required: true, unique: true, trim: true, lowercase: true, validate: [validator.isEmail, 'Please provide a valid email']},
   password: {type: String, required: true},
-  phone: {type: String, required: true},
+  phone: {type: String},
   role: { type: String, enum: ['user', 'owner', 'admin'], default: 'user' },
   vehicleType: {type: String},
   licensePlate: {type: String},
