@@ -1,5 +1,6 @@
 import moment from 'moment'
 import bookingModel from '../models/bookingModel.js'
+import parkingSlot from '../models/parkingSlotModel.js'
 
 // getting booking details that is currently active(success)
 export const getActiveBookings = async (req, res) => {
@@ -8,9 +9,8 @@ export const getActiveBookings = async (req, res) => {
   try {
     const bookings = await bookingModel.find({
       user: req.user._id,
-      endTime: { $gte: now.toDate() },
       status: { $in: ['Confirmed', 'In-progress'] }
-    }).sort( { startTime: 1 })
+    }).populate('slot')
 
     if (!bookings) {
       return res.json({success: false, message: "Error in getting active bookings"})
@@ -30,7 +30,7 @@ export const getBookingHistory = async (req, res) => {
 
   try {
 
-    const bookings = await bookingModel.find({ user: req.user._id, endTime: { $lt: now.toDate() } }).sort({ endTime: -1 });
+    const bookings = await bookingModel.find({ user: req.user._id, status: { $in: ['Completed', 'Cancelled'] }}).populate('slot');
 
     if (!bookings) {
       return res.json({success: false, message: "Error in getting past history"})
@@ -57,11 +57,21 @@ export const cancelBooking = async (req, res) => {
       return res.json({success: false, message: "Booking not found"}) 
     }
 
-    const diff = moment(booking.startTime).diff(moment(), 'minutes')
+    if (booking.status === 'Cancelled') {
+      return res.json({ success: false, message: "Booking is already cancelled" });
+    }
+
+    const bookingDateTime = moment(`${booking.date} ${booking.startTime}`, 'YYYY-MM-DD HH:mm');
+
+    const diff = bookingDateTime.diff(moment(), 'minutes');
 
     if (diff <= 30) {
       return res.json({ success: false, message: 'Cannot cancel within 30 minutes of start time' });
     }
+
+    booking.status = 'Cancelled';
+
+    await booking.save();
     
     res.json({ success: true, message: 'Booking cancelled' });
 
