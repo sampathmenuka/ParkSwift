@@ -9,7 +9,6 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import TermsPrivacy from './pages/TermsPrivacy';
 import Login from './pages/Login';
-import UserDashboard from './pages/UserDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Payment from './pages/Payment';
@@ -17,6 +16,12 @@ import SearchParking from './pages/SearchParking'
 import SlotBooking from './pages/SlotBooking'
 import NotFound from './pages/NotFound'
 import ResetPassword from './pages/ResetPassword';
+import PrivateRoute from './components/PrivateRoute';
+import UserDashboard from './pages/UserDashboard';
+import ActiveBooking from './components/dashboard/ActiveBooking'
+import BookingHistory from './components/dashboard/BookingHistory';
+import Notification from './components/dashboard/Notification'
+import UserProfile from './components/dashboard/UserProfile'
 
 
 const queryClient = new QueryClient();
@@ -34,10 +39,24 @@ const App = () => {
         <Route path='/terms-privacy' element={<TermsPrivacy />} />
         <Route path='/login' element={<Login />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/dashboard' element={<UserDashboard />} />
-        <Route path='/dashboard/user' element={<UserDashboard />} />
+
+        <Route path='/dashboard/user' 
+          element={
+            <PrivateRoute allowedRoles={['user']}>
+              <UserDashboard />
+            </PrivateRoute>} >
+
+            <Route path='active-booking' element={<ActiveBooking />} />
+            <Route path='booking-history' element={<BookingHistory />} />
+            <Route path='notifications' element={<Notification />} />
+            <Route path='profile' element={<UserProfile />} />
+            
+        </Route>
+
         <Route path='/dashboard/owner' element={ <OwnerDashboard /> } />
+
         <Route path='/dashboard/admin' element={<AdminDashboard />} />
+        
         <Route path="/search" element = {<SearchParking />} />
         <Route path="/booking" element = {<SlotBooking />} />
         <Route path='/payment' element={<Payment />} />
