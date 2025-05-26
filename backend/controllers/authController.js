@@ -24,6 +24,10 @@ export const register = async (req, res) => {
       return res.json({success:false, message: "User already exist"}) 
     }
     
+    if (password.length < 7 || confirmPassword.length < 7) {
+      return res.json({success:false, message: "Password length must be greater than 6 digits"})
+    }
+    
     // encrypt password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -81,19 +85,23 @@ export const login = async (req, res) => {
       return res.json({success: false, message: "Invalid Credentials"})
     }
 
+    if (password.length < 7) {
+      return res.json({success:false, message: "Password length must be greater than 6 digits"})
+    }
+
     const isMatch = await bcrypt.compare(password, user.password)
 
     if (!isMatch) {
       return res.json({success:false, message: "Invalid Password"})
     }
 
-    const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000
+      maxAge: 1 * 24 * 60 * 60 * 1000
     });
 
     res.json({success: true, user: {
@@ -140,7 +148,8 @@ export const isAuthenticated = async (req, res) => {
       phone: user.phone,
       vehicleType: user.vehicleType,
       licensePlate: user.licensePlate
-    } }) // changed
+    }
+   }) // changed
   } catch (error) {
       return res.json({success:false, message:error.message})
   }
