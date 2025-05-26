@@ -10,7 +10,11 @@ const BookingHistory = () => {
   const { backendUrl } = useContext(AuthContext)
   const [history, setHistory] = useState([])
 
+  const [loading, setLoading] = useState(false)
+
   const getHistory = async () => {
+
+    setLoading(true);
 
     try {
 
@@ -21,6 +25,8 @@ const BookingHistory = () => {
       } else{
         toast.error(data.message)
       }
+
+    setLoading(false)
       
     } catch (error) {
         toast.error(error.message)
@@ -29,7 +35,16 @@ const BookingHistory = () => {
 
   useEffect(() => {
     getHistory()
-  }, [history])
+  }, [])
+
+  if (loading) {
+    return (
+      <div class="flex flex-col items-center justify-center h-48">
+        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-blue-500 font-medium">Loading...</p>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -57,7 +72,7 @@ const BookingHistory = () => {
                     <div className='mb-4'>
                       <div className='w-full flex items-center justify-between'>
                         <h3 className='text-md md:text-xl font-semibold text-indigo-500'>
-                          {item.slot.location || 'Unknown Slot'}
+                          {item.slot?.location || 'Unknown Slot'}
                         </h3>
                         <p className={`py-1 px-3 rounded-full bg-indigo-400 text-white text-sm ${item.status === "Completed" ? "bg-green-600" : "bg-red-600"} `}>
                           {item.status}
