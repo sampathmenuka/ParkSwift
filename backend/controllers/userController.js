@@ -61,6 +61,10 @@ export const changePassword = async (req, res) => {
       return res.json({ success: false, message: 'Old password is incorrect' });
     }
 
+    if (newPassword.length < 7 || !newPassword) {
+      return res.json({success:false, message: "Password must be greater than 6 digits"})
+    }
+
     user.password = await bcrypt.hash(newPassword, 10);
 
     await user.save();

@@ -11,7 +11,11 @@ const Notification = () => {
   const [notifications, setNotifications] = useState([])
   const [unReadCount, setUnReadCount] = useState(0)
 
+  const [loading, setLoading] = useState(false)
+
   const fetchNotifications = async () => {
+
+    setLoading(true)
 
     try {
       
@@ -25,6 +29,9 @@ const Notification = () => {
       } else {
         toast.error(data.message)
       }
+
+    setLoading(false)
+
     } catch (error) {
         toast.error(error.message)
     }
@@ -75,7 +82,18 @@ const Notification = () => {
   
   useEffect(() => {
     fetchNotifications();
-  }, [backendUrl])
+  }, [])
+
+
+  if (loading) {
+    return (
+      <div class="flex flex-col items-center justify-center h-48">
+        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-blue-500 font-medium">Loading...</p>
+      </div>
+    )
+  }
+
 
   return (
     <div>

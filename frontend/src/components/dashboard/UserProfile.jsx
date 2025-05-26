@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const UserProfile = () => {
 
-  const {backendUrl, getAuthState} = useContext(AuthContext) 
+  const {backendUrl} = useContext(AuthContext) 
 
   const navigate = useNavigate()
 
@@ -26,8 +26,11 @@ const UserProfile = () => {
 
   const [confirm, setConfirm] = useState(false);
 
+  const [loading, setLoading] = useState(false)
+
   const getProfile = async () => {
 
+    setLoading(true);
     try {
 
       const {data} = await axios.get(backendUrl + '/api/user/profile')
@@ -37,7 +40,8 @@ const UserProfile = () => {
       } else{
         toast.error(data.message);
       }
-      
+
+      setLoading(false);
     } catch (error) {
         toast.error(error.message)
     }
@@ -133,6 +137,16 @@ const UserProfile = () => {
   useEffect(() => {
     getProfile();
   }, [])
+
+
+  if (loading) {
+    return (
+      <div class="flex flex-col items-center justify-center h-48">
+        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-blue-500 font-medium">Loading...</p>
+      </div>
+    )
+  }
 
 
   return (

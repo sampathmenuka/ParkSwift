@@ -11,7 +11,11 @@ const ActiveBooking = () => {
   const { backendUrl } = useContext(AuthContext);
   const [ bookings, setBookings ] = useState([])
 
+  const [loading, setLoading] = useState(false)
+
   const getBooking = async () => {
+
+    setLoading(true)
 
     try {
 
@@ -23,6 +27,7 @@ const ActiveBooking = () => {
         toast.error(data.message)
       }
       
+      setLoading(false);
     } catch (error) {
         toast.error(error.message);
     }
@@ -49,7 +54,17 @@ const ActiveBooking = () => {
   
   useEffect(() => {
     getBooking();
-  }, [bookings])
+  }, [])
+
+
+  if (loading) {
+    return (
+      <div class="flex flex-col items-center justify-center h-48">
+        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-blue-500 font-medium">Loading...</p>
+      </div>
+    )
+  }
 
 
   return (
@@ -59,7 +74,7 @@ const ActiveBooking = () => {
       </h2>
 
       {
-        bookings.length < 0 
+        bookings.length === 0 
         ? (
           <div className='text-center py-12'>
             <p className='text-gray-600 mb-3 font-light text-lg'>
