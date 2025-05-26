@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Index from './pages/Index';
@@ -9,7 +9,6 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import TermsPrivacy from './pages/TermsPrivacy';
 import Login from './pages/Login';
-import OwnerDashboard from './pages/OwnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Payment from './pages/Payment';
 import SearchParking from './pages/SearchParking'
@@ -17,11 +16,18 @@ import SlotBooking from './pages/SlotBooking'
 import NotFound from './pages/NotFound'
 import ResetPassword from './pages/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
+
 import UserDashboard from './pages/UserDashboard';
 import ActiveBooking from './components/dashboard/ActiveBooking'
 import BookingHistory from './components/dashboard/BookingHistory';
 import Notification from './components/dashboard/Notification'
 import UserProfile from './components/dashboard/UserProfile'
+
+import OwnerDashboard from './pages/OwnerDashboard';
+import ManageSlots from './components/ownerDashboard/ManageSlots'
+import ViewBooking from './components/ownerDashboard/ViewBooking'
+import Earnings from './components/ownerDashboard/Earnings'
+import OwnerProfile from './components/ownerDashboard/OwnerProfile';
 
 
 const queryClient = new QueryClient();
@@ -49,11 +55,21 @@ const App = () => {
             <Route path='active-booking' element={<ActiveBooking />} />
             <Route path='booking-history' element={<BookingHistory />} />
             <Route path='notifications' element={<Notification />} />
-            <Route path='profile' element={<UserProfile />} />
-            
+            <Route path='profile' element={<UserProfile />} />           
         </Route>
 
-        <Route path='/dashboard/owner' element={ <OwnerDashboard /> } />
+        <Route path='/dashboard/owner' 
+          element={
+            <PrivateRoute allowedRoles={['owner']}>
+              <OwnerDashboard />
+            </PrivateRoute>} >
+
+            <Route path='manage-slots' element={<ManageSlots />} />
+            <Route path='view-booking' element={<ViewBooking />} />
+            <Route path='earnings' element={<Earnings />} />
+            <Route path='profile' element={<OwnerProfile />} />        
+        </Route>
+
 
         <Route path='/dashboard/admin' element={<AdminDashboard />} />
         
