@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { AuthContext } from '../contexts/AuthContext'
 import Footer from '../components/Footer'
