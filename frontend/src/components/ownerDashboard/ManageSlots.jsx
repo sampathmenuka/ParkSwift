@@ -20,6 +20,8 @@ const ManageSlots = () => {
     address: '',
     pricePerHour: '',
     totalSlots: '',
+    date: '', // 2025-04-10
+    available: false,
     description: '',
     latitude: '',
     longitude: '',
@@ -67,6 +69,8 @@ const ManageSlots = () => {
       pricePerHour: slot.pricePerHour || '',
       totalSlots: slot.totalSlots || '',
       description: slot.description || '',
+      date: slot.date || '',
+      available: slot.available || false,
       latitude: slot.latitude || '',
       longitude: slot.longitude || '',
       images: slot.images || null,
@@ -145,7 +149,7 @@ const ManageSlots = () => {
       getSlots();
       setShowForm(false);
       setEditSlot(null);
-      setFormData({ location: '', address: '', pricePerHour: '' ,totalSlots: '', description: '', latitude: '', longitude: '', images: null, vehicleTypeAllowed: '', slotType: '', availableFrom: '', availableTo: '' })
+      setFormData({ location: '', address: '', pricePerHour: '' , date: '', available: false, totalSlots: '', description: '', latitude: '', longitude: '', images: null, vehicleTypeAllowed: '', slotType: '', availableFrom: '', availableTo: '' })
 
       setLoading(false);
       scrollTo(0,0);
@@ -162,7 +166,7 @@ const ManageSlots = () => {
         <h2 className='text-lg md:text-2xl font-semibold text-gray-700'>
           Your Parking Slots
         </h2>
-        <button onClick={() => { scrollTo(0,0); setEditSlot(null); setFormData({ location: '', address: '', pricePerHour: '',totalSlots: '', description: '', latitude: null, longitude: '', images: '', vehicleTypeAllowed: '', slotType: '', availableFrom: '', availableTo: '' }); setShowForm(true)} } className={`text-xs md:text-lg py-2 px-3 bg-indigo-500 rounded-md text-white hover:bg-indigo-400 transition-all duration-300` }>
+        <button onClick={() => { scrollTo(0,0); setEditSlot(null); setFormData({ location: '', address: '', pricePerHour: '',totalSlots: '', description: '', date: '', available: false, latitude: null, longitude: '', images: '', vehicleTypeAllowed: '', slotType: '', availableFrom: '', availableTo: '' }); setShowForm(true)} } className={`text-xs md:text-lg py-2 px-3 bg-indigo-500 rounded-md text-white hover:bg-indigo-400 transition-all duration-300` }>
           + Add new slot
         </button>
       </div>
@@ -192,12 +196,9 @@ const ManageSlots = () => {
                 </div>
 
                 <div className='p-4'>
-                  <div className='w-full flex justify-between items-center'>
+                  <div className='w-full'>
                     <p className='font-semibold text-gray-800 text-lg'>
                       {slot.location}
-                    </p>
-                    <p className={`text-xs px-2 py-1 rounded-full ${slot.slotType === 'Covered' ? 'bg-green-200 text-green-800' : 'bg-blue-200 text-blue-800'} `}>
-                      {slot.slotType === 'Covered' ? 'Covered' : 'UnCovered'}
                     </p>
                   </div>
 
@@ -212,10 +213,23 @@ const ManageSlots = () => {
                       <p className="text-sm">Hours: {slot.availableFrom} - {slot.availableTo}</p>
                     </div>
 
-                    <div>
+                    <div className='text-purple-700'>
                       <p className="text-sm">Vehicle: {slot.vehicleTypeAllowed}</p>
-                      <p className="text-sm text-indigo-500 font-medium">Rate: LKR. {slot.pricePerHour}/hr</p>
+                      <p className="text-sm">Date: {new Date(slot.date).toLocaleDateString('en-CA')}</p>
                     </div>
+                  </div>
+
+                  <div className='mt-6 flex items-center flex-wrap gap-2'>
+                    <p className={`text-sm py-1 px-3 font-medium rounded-full ${slot.available ? "bg-green-200 text-green-600" : "bg-red-200 text-red-600"}`}>
+                      {slot.available ? "Available" : "Not Available"}
+                    </p>
+                    <p className={`text-sm px-3 py-1 font-medium rounded-full ${slot.slotType === 'Covered' ? 'bg-indigo-200 text-indigo-800' : 'bg-purple-200 text-purple-800'} `}>
+                      {slot.slotType === 'Covered' ? 'Covered' : 'UnCovered'}
+                    </p>
+                  </div>
+
+                  <div className='mt-6'>
+                    <p className="text-base text-indigo-500 font-medium">Rate: LKR. {slot.pricePerHour}/hr</p>
                   </div>
                 </div>
 
@@ -308,6 +322,20 @@ const ManageSlots = () => {
                 </div>
               </div>
 
+              <div className='mb-4 grid md:grid-cols-2 gap-3 items-center'>
+                <div>
+                  <label className='text-sm font-md font-medium'>
+                    Date
+                  </label>
+                  <input className='py-2 px-3 rounded-md border w-full mt-1 placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400' type="date" value={formData.date} onChange={e => setFormData({...formData, date: e.target.value})} />
+                </div>
+                <div>
+                  <label className='text-lg font-md font-medium flex items-center gap-2 text-indigo-500 ml-4'>
+                    <input type="checkbox" className='w-4 h-4 border' checked={formData.available} onChange={e => setFormData({...formData, available: e.target.checked})} /><span>Available Slots</span>
+                  </label>
+                </div>
+              </div>
+
               <div className='mb-4 grid md:grid-cols-2 gap-3'>
                 <div>
                   <label className='text-sm font-md font-medium'>
@@ -338,6 +366,7 @@ const ManageSlots = () => {
                   <option value="Car">Car</option>
                   <option value="Motorbike">Motorbike</option>
                   <option value="Van">Van</option>
+                  <option value="Truck">Truck</option>
                 </select>
               </div>
 
