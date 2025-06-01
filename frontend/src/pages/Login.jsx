@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,19 +11,18 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const [state, setState] = useState('Sign up');
 
-  const [state, setState] = useState('Sign up')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('user');
+  const [phone, setPhone] = useState('');
+  const [vehicleType, setVehicleType] = useState('');
+  const [licensePlate, setLicensePlate] = useState('');
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [role, setRole] = useState('user')
-  const [phone, setPhone] = useState('')
-  const [vehicleType, setVehicleType] = useState('')
-  const [licensePlate, setLicensePlate] = useState('')
-
-  const {backendUrl, setIsAuthenticated, setUser } = useContext(AuthContext)
+  const {backendUrl, setIsAuthenticated, setUser } = useContext(AuthContext);
 
   const onSubmitHandler = async (e) => {
 
@@ -73,8 +72,8 @@ const Login = () => {
     <div className='flex flex-col min-h-screen'>
       <Navbar />
 
-      <div className='pt-24 pb-16 px-2'>
-        <div className='max-w-lg mx-auto px-4 sm:px-6 lg:px-8 bg-gray-50 shadow-md rounded-md pb-6'>
+      <div className='pt-28 pb-16 px-2 bg-gradient-to-bl from-indigo-700 to-indigo-200'>
+        <div className='max-w-lg mx-auto px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-200 to-white shadow-xl rounded-lg pb-6'>
           <div className='flex flex-col py-6'>
             <h2 className='text-center text-2xl font-bold text-indigo-500 tracking-wide'>Welcome to ParkSwift</h2>
             <p className='text-center text-sm text-gray-600'>
@@ -92,7 +91,7 @@ const Login = () => {
             </div>
           </div>
 
-          <div className='flex gap-2 p-1 mb-6 bg-gray-100 rounded-sm'>
+          <div className='flex gap-2 p-1 mb-6 bg-indigo-50 rounded-md'>
             <button type='button' onClick={() => setState('Log in')} className={`w-full flex justify-center py-2 px-4 border text-sm rounded-md shadow-sm font-medium focus:outline-none focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 ${state === 'Log in' ? 'border-transparent bg-indigo-500 text-white hover:bg-indigo-600' : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'}`}>
               Log in
             </button>
