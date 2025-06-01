@@ -72,7 +72,7 @@ const ActiveBooking = () => {
 
   useEffect(() => {
     getBooking();
-  }, [])
+  }, [backendUrl])
 
   if (loading) {
     return (
@@ -167,7 +167,7 @@ const ActiveBooking = () => {
 
                           {
                             canMarkAsParked && (
-                              <button onClick={() => markAsParked(booking._id)} className="py-2 text-white rounded w-full bg-green-500 hover:bg-green-600 duration-300 transition-all">
+                              <button onClick={() => {markAsParked(booking._id); scrollTo(0, 0)}} className="py-2 text-white rounded w-full bg-green-500 hover:bg-green-600 duration-300 transition-all">
                                 Parked
                               </button>
                             ) 
