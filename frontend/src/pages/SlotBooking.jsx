@@ -64,8 +64,8 @@ const SlotBooking = () => {
       if (new Date(date).toISOString().split('T')[0] !== new Date(slot.date).toISOString().split('T')[0]) 
         return toast.error('You can only book on the available date.');
 
-      // if (new Date(slot.date).getDate() < new Date().getDate()) 
-      //   return toast.error("can't book a solt. because of the expired");
+      if (new Date(slot.date).getDate() < new Date().getDate()) 
+        return toast.error("can't book a solt. because of the expired");
 
       if (startTime < slot.availableFrom || endTime > slot.availableTo) {
         return toast.error(`Slot is only available between ${slot.availableFrom} and ${slot.availableTo}`);
@@ -145,7 +145,7 @@ const SlotBooking = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 
             {/* slot details  */}
-            <div className='p-6 border shadow rounded h-fit'>
+            <div className='p-6 border shadow-md bg-gray-50 rounded-md h-fit'>
               <h3 className='text-xl md:text-2xl leading-none font-semibold text-gray-700 mb-4'>
                 {slot.location}
               </h3>
@@ -161,8 +161,8 @@ const SlotBooking = () => {
               </div>
 
               <div className="flex items-center mt-4 mb-2">
-                <div className="text-amber-600 font-medium flex items-center gap-1">
-                  <Star className='w-4 h-4'/>
+                <div className="text-yellow-400 font-medium flex items-center gap-1">
+                  <Star className='w-4 h-4' fill={"currentColor"}/>
                   <span>{slot.rating}</span>
                 </div>
                 <div className="text-sm text-gray-500 ml-1">
