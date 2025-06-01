@@ -93,10 +93,10 @@ export const updateSlot = async (req, res) => {
 
   let imageURL = null;
 
-  const { location, address, pricePerHour, totalSlots, description, latitude,longitude, vehicleTypeAllowed, slotType, availableFrom, availableTo } = req.body
+  const { location, address, pricePerHour, date, available, totalSlots, description, latitude, longitude, vehicleTypeAllowed, slotType, availableFrom, availableTo } = req.body
 
   const updateData = { 
-    location, address, pricePerHour, totalSlots, description, latitude,longitude, vehicleTypeAllowed, slotType, availableFrom, availableTo 
+    location, address, pricePerHour, totalSlots, date, available, description, latitude, longitude, vehicleTypeAllowed, slotType, availableFrom, availableTo 
   }
     
   const imageFile = req.file;

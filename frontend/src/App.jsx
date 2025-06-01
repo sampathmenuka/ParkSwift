@@ -28,6 +28,8 @@ import ManageSlots from './components/ownerDashboard/ManageSlots'
 import ViewBooking from './components/ownerDashboard/ViewBooking'
 import Earnings from './components/ownerDashboard/Earnings'
 import OwnerProfile from './components/ownerDashboard/OwnerProfile';
+import StripeContainer from './components/StripeContainer';
+import Review from './pages/Review';
 
 
 const queryClient = new QueryClient();
@@ -74,8 +76,13 @@ const App = () => {
         <Route path='/dashboard/admin' element={<AdminDashboard />} />
         
         <Route path="/search" element = {<SearchParking />} />
-        <Route path="/booking" element = {<SlotBooking />} />
-        <Route path='/payment' element={<Payment />} />
+        <Route path="/booking/:id" element = {<SlotBooking />} />
+        <Route path='/payment' element={
+          <PrivateRoute allowedRoles={['user']}>
+            <StripeContainer />
+          </PrivateRoute> } >
+        </Route>
+        <Route path="/reviews/:slotId" element={<Review />} />
         <Route path="*" element = {<NotFound />} />
       </Routes>
     </QueryClientProvider>
