@@ -10,7 +10,7 @@ bookingRouter.get('/booking-history', userAuth, authorizeRoles('user'), getBooki
 bookingRouter.put('/cancel/:bookingId', userAuth, authorizeRoles('user'), cancelBooking);
 bookingRouter.delete('/clear-history', userAuth, authorizeRoles('user'), clearBookingHistory);
 bookingRouter.put('/mark-parked/:id', userAuth, authorizeRoles('user'), markAsParked);
-bookingRouter.post('/create', userAuth, createBooking);
+bookingRouter.post('/create', userAuth, authorizeRoles('user'), createBooking);
 
 
 export default bookingRouter;

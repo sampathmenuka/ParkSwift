@@ -9,7 +9,7 @@ const parkingSlotSchema = new mongoose.Schema({
     totalSlots: { type: Number, default: 1},
     bookedTimes: [
       {
-        date: String, // or Date if you're using proper date objects
+        date: String,
         startTime: String,
         endTime: String
       }
