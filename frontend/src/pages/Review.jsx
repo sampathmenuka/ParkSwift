@@ -13,7 +13,8 @@ const Review = () => {
 
   const {backendUrl} = useContext(AuthContext);
 
-  const [slot, setSlot] = useState({})
+  const [slot, setSlot] = useState([]);
+  const [booking, setBooking] = useState([]);
   const [canReview, setCanReview] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -106,7 +107,7 @@ const Review = () => {
                 </p>
               ) : (
 
-                <form onSubmit={submitReview} className='p-6 shadow-md rounded-md border h-fit'>
+                <form onSubmit={submitReview} className='p-6 shadow-md rounded-md border h-fit bg-gray-50'>
                   <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">Your Rating: (1 to 5)</label>
                     <div className="flex gap-2 items-center">
@@ -136,7 +137,7 @@ const Review = () => {
 
               <hr className='mb-4'/>
 
-              <div className='mb-6'>
+              <div className='mb-3'>
                 <h3 className='text-lg md:text-xl leading-none font-semibold text-gray-700'>
                   {slot.location}
                 </h3>
@@ -150,6 +151,18 @@ const Review = () => {
                   Description: 
                   <span className='ml-1 text-gray-600'>{slot.description}</span>
                 </p>
+              </div>
+
+              <div className='flex items-center flex-wrap gap-2 justify-start mb-3'>
+                <p className={`text-sm py-1 px-3 rounded-lg font-medium ${slot.slotType === "Covered" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                  {slot.slotType}
+                </p>
+                <p className='text-sm py-1 px-3 bg-indigo-100 rounded-lg text-indigo-600 font-medium'>
+                  24/7
+                </p>
+                <p className='text-sm py-1 px-3 bg-indigo-100 rounded-lg text-indigo-600 font-medium'>
+                  Security
+                </p>     
               </div>
 
               <div className="flex justify-between items-center">
