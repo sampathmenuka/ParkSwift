@@ -87,9 +87,9 @@ const Notification = () => {
 
   if (loading) {
     return (
-      <div class="flex flex-col items-center justify-center h-48">
-        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p class="text-blue-500 font-medium">Loading...</p>
+      <div className="flex flex-col items-center justify-center h-48">
+        <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="text-blue-500 font-medium">Loading...</p>
       </div>
     )
   }
