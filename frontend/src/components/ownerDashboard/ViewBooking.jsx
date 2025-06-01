@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext';
 import { toast } from 'react-toastify';
 import { Loader2 } from 'lucide-react';
+import moment from 'moment';
 
 
-const statusOptions = ['All', 'Confirmed', 'Completed', 'Cancelled', 'In-Progress']
+const statusOptions = ['All', 'Confirmed', 'Completed', 'Cancelled'];
+
 const dateOptions = [
   { label: 'Last 7 Days', value: '7' },
   { label: 'Last 30 Days', value: '30' },
@@ -40,7 +42,7 @@ const ViewBooking = () => {
 
       if (data.success) {
         const fetched = data.bookings || [];
-        setBookings(fetched)
+        setBookings(fetched);
 
         const locationNames = [...new Set(fetched.map(b => b.slot.location))]
 
@@ -58,7 +60,7 @@ const ViewBooking = () => {
   }
 
   useEffect(() => {
-    getBookings()
+    getBookings();
   }, []);
 
   useEffect(() => {
@@ -114,6 +116,7 @@ const ViewBooking = () => {
           Booking Management
         </h2>
 
+        {/* filtering options  */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className='font-medium text-base text-indigo-500'>Slot</label>
@@ -148,6 +151,8 @@ const ViewBooking = () => {
         </div>
       </div> 
 
+
+      {/* data in table format */}
       <div className="overflow-auto p-4 rounded-md shadow-sm border">
         <table className="min-w-full border divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -175,7 +180,7 @@ const ViewBooking = () => {
                     <div className="text-sm text-gray-500">{b.user.email}</div>
                   </td>
                   <td className="px-4 py-2">{b.slot.location}</td>
-                  <td className="px-4 py-2">{new Date(b.date).toLocaleDateString()}</td>
+                  <td className="px-4 py-2">{moment(new Date(b.date).toLocaleDateString()).format('MMM DD, YYYY')}</td>
                   <td className="px-4 py-2">{b.startTime} - {b.endTime}</td>
                   <td className="px-4 py-2">LKR. {b.totalPayment.toFixed(2)}</td>
                   <td className="px-4 py-2">
