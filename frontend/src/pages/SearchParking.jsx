@@ -202,7 +202,7 @@ const SearchParking = () => {
 
             {/* filters  */}
             <div className='lg:col-span-1'>
-              <div className='border rounded-md shadow p-4'>
+              <div className='border rounded-md shadow bg-indigo-50 p-4'>
                 <p className='flex items-center gap-2 text-gray-800 mb-4'>
                   <Filter className='h-5 w-5' />
                   <span className='text-xl tracking-wider font-bold'>Filters</span>
@@ -272,11 +272,11 @@ const SearchParking = () => {
                   </label>
 
 
-                  <button type="submit" className='w-full py-2 bg-indigo-500 rounded-md mt-3 text-white font-medium hover:bg-indigo-400 transition-all duration-300' disabled={loading}>
+                  <button type="submit" className='w-full py-2 bg-indigo-600 rounded-md mt-3 text-white font-medium hover:bg-indigo-500 transition-all duration-300' disabled={loading}>
                     {loading ? "Searching..." : "Search"}
                   </button>
 
-                  <button type="button" className='w-full py-2 bg-red-500 rounded-md mt-2 text-white font-medium hover:bg-red-400 transition-all duration-300' onClick={resetHandler}>
+                  <button type="button" className='w-full py-2 bg-green-500 rounded-md mt-2 text-white font-medium hover:bg-green-400 transition-all duration-300' onClick={resetHandler}>
                     Reset
                   </button>
 
@@ -363,8 +363,8 @@ const SearchParking = () => {
 
                                 <div className="flex justify-between items-center mt-2">
                                   <div className="flex items-center">
-                                    <div className="text-amber-600 font-medium flex items-center gap-1">
-                                      <Star className='w-4 h-4'/>
+                                    <div className="text-yellow-300 font-medium flex items-center gap-1">
+                                      <Star className='w-4 h-4' fill='currentColor'/>
                                       <span>{slot.rating}</span>
                                     </div>
                                     <div className="text-sm text-gray-500 ml-1">
