@@ -7,6 +7,13 @@ const parkingSlotSchema = new mongoose.Schema({
     pricePerHour: {type: Number, required: true },
     date: { type: Date },
     totalSlots: { type: Number, default: 1},
+    bookedTimes: [
+      {
+        date: String, // or Date if you're using proper date objects
+        startTime: String,
+        endTime: String
+      }
+    ],
     available: {type: Boolean, default: true},
     description: {type: String },
     latitude: {type: Number},
@@ -16,15 +23,12 @@ const parkingSlotSchema = new mongoose.Schema({
     slotType: { type: String }, // Covered or Uncovered
     availableFrom: { type: String }, // e.g., "08:00"
     availableTo: { type: String },   // e.g., "20:00"
-    reviews: {
-      rating: { type: Number},
-      totalReviews: { type: Number },
-    }
-  },
+    rating: { type: Number, default: 0 }, // average rating
+    totalReviews: { type: Number, default: 0 },
+  }
 );
 
 
 const parkingSlotModel = mongoose.models.parkingSlot || mongoose.model('parkingSlot', parkingSlotSchema);
-
 
 export default parkingSlotModel;
