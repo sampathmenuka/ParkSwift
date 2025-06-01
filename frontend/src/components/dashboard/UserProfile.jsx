@@ -6,9 +6,9 @@ import axios from 'axios'
 
 const UserProfile = () => {
 
-  const {backendUrl} = useContext(AuthContext) 
+  const {backendUrl} = useContext(AuthContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: '',
@@ -18,22 +18,22 @@ const UserProfile = () => {
     licensePlate: ''
   });
 
-  const [editingInfo, setEditingInfo] = useState(false)
-  const [editingVehicle, setEditingVehicle] = useState(false)
+  const [editingInfo, setEditingInfo] = useState(false);
+  const [editingVehicle, setEditingVehicle] = useState(false);
 
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const [confirm, setConfirm] = useState(false);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const getProfile = async () => {
 
     setLoading(true);
     try {
 
-      const {data} = await axios.get(backendUrl + '/api/user/profile')
+      const {data} = await axios.get(backendUrl + '/api/user/profile');
 
       if (data.success) {
         setUser(data.user);
@@ -43,18 +43,18 @@ const UserProfile = () => {
 
       setLoading(false);
     } catch (error) {
-        toast.error(error.message)
+        toast.error(error.message);
     }
   }
 
   const handleProfileUpdate = async () => {
     try {
 
-      const {data} = await axios.put(backendUrl + '/api/user/profile', user)
+      const {data} = await axios.put(backendUrl + '/api/user/profile', user);
 
       if (data.success) {
-        setEditingInfo(false)
-        toast.success(data.message)  
+        setEditingInfo(false);
+        toast.success(data.message);
         setTimeout(() => {
           window.location.reload(); 
         }, 1500)

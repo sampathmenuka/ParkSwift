@@ -128,7 +128,7 @@ const Notification = () => {
 
                 {
                   unReadCount > 0 && (
-                    <button onClick={handleMarkAllAsRead} className='py-2 px-3 rounded bg-indigo-200 text-gray-800 hover:bg-indigo-400 text-xs md:text-sm transition-all duration-300'>
+                    <button onClick={handleMarkAllAsRead} className='py-2 px-3 rounded bg-indigo-400 text-white font-medium hover:bg-indigo-500 text-xs md:text-sm transition-all duration-300'>
                       Mark all as read
                     </button>
                   )

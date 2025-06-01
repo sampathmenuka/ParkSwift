@@ -1,17 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {AuthContext} from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 import axios from 'axios'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import { Calendar, Clock } from "lucide-react";
 import moment from 'moment'
 
 const ActiveBooking = () => {
 
   const { backendUrl } = useContext(AuthContext);
-  const [ bookings, setBookings ] = useState([])
+  const [ bookings, setBookings ] = useState([]);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate()
 
   const getBooking = async () => {
 
@@ -51,21 +53,35 @@ const ActiveBooking = () => {
     }
   }
 
-  
+  const markAsParked = async (id) => {
+
+    try {
+      const { data } = await axios.put(backendUrl + `/api/bookings/mark-parked/${id}`);
+
+      if (data.success) {
+        toast.success(data.message);
+        setBookings(bookings.filter(b => b._id !== id));
+        navigate(`/reviews/${data.slotId}`);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getBooking();
   }, [])
 
-
   if (loading) {
     return (
-      <div class="flex flex-col items-center justify-center h-48">
-        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p class="text-blue-500 font-medium">Loading...</p>
+      <div className="flex flex-col items-center justify-center h-48">
+        <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="text-blue-500 font-medium">Loading...</p>
       </div>
     )
   }
-
 
   return (
     <div>
@@ -81,7 +97,9 @@ const ActiveBooking = () => {
               You have no active bookings.
             </p>
             <NavLink to='/search'>
-              <button className='py-1.5 px-4 bg-indigo-400 rounded-md text-white hover:bg-indigo-500 transition-all duration-300'>Find Parkings</button>
+              <button className='py-1.5 px-4 bg-indigo-400 rounded-md text-white hover:bg-indigo-500 transition-all duration-300'>
+                Find Parkings
+              </button>
             </NavLink>
           </div>
         ) : (
@@ -92,16 +110,23 @@ const ActiveBooking = () => {
                 const startMoment = moment(`${booking.date} ${booking.startTime}`, 'YYYY-MM-DD HH:mm');
                 const now = moment();
                 const isCancelable = startMoment.diff(now, 'minutes') > 30;
-                
+                const endMoment = moment(`${booking.date} ${booking.endTime}`, 'YYYY-MM-DD HH:mm');
+                const isExpired = endMoment.isBefore(now);
+
+                // Booking can be marked as parked if today and current time is within time range
+                const isToday = now.isSame(booking.date, 'day');
+                const isWithinTimeRange = now.isBetween(startMoment, endMoment);
+                const canMarkAsParked = isToday && isWithinTimeRange;
+      
                 return (
                   <div key={booking._id} className='p-4 border rounded shadow mb-4'>
                     <div>
                       <div className='mb-4'>
                         <div className='w-full flex items-center justify-between'>
-                          <h3 className='text-md md:text-xl font-semibold text-indigo-500'>
+                          <h3 className='text-md md:text-xl tracking-wider font-semibold text-indigo-500'>
                             {booking.slot.location || 'Unknown Slot'}
                           </h3>
-                          <p className={`py-1 px-3 rounded-full text-xs bg-indigo-400 text-white md:text-sm ${booking.status === "Confirmed" ? "bg-indigo-600" : ""}`}>
+                          <p className={`py-1 px-3 rounded-full text-xs text-white md:text-sm ${booking.status === "Confirmed" ? "bg-indigo-600" : "bg-gray-700"}`}>
                             {booking.status}
                           </p>
                         </div>
@@ -121,27 +146,43 @@ const ActiveBooking = () => {
                         <p className='text-gray-600 font-medium'>{booking.startTime} - {booking.endTime}</p>
                       </div>
 
-                      <div className='flex gap-2 items-center text-gray-700 font-semibold'>
+                      <div className='flex gap-2 items-center text-gray-700 font-semibold mb-4'>
                         <p>Amount: </p>
                         <p className='text-green-600'>LKR. {booking.totalPayment.toFixed(2)}</p>
                       </div>
                     </div>
 
-                    <div className="mt-4 grid gap-2 md:grid-cols-3">
-                      <button className="border hover:bg-indigo-50 duration-300 transition-all py-2 rounded w-full">
-                        View Details
-                      </button>
-                      <button className="border py-2 rounded w-full hover:bg-indigo-50 duration-300 transition-all">
-                        Get Directions
-                      </button>
-                      {
-                        isCancelable && (
-                          <button onClick={() => cancelBooking(booking._id)} className="bg-red-500 text-white py-2 rounded w-full hover:bg-red-600 duration-300 transition-all" >
-                            Cancel Booking
+                    <hr className='border border-indigo-100 mb-2' />
+
+                    {
+                      isExpired ? (
+                        <p className="text-sm text-red-500 font-medium mt-2">
+                          This booking has ended.
+                        </p>
+                      ) : (
+                        <div className="mt-4 grid gap-2 md:grid-cols-3">
+                          <button className="border hover:bg-indigo-50 duration-300 transition-all py-2 rounded w-full">
+                            View Details
                           </button>
-                        )
-                      }
-                    </div>
+
+                          {
+                            canMarkAsParked && (
+                              <button onClick={() => markAsParked(booking._id)} className="py-2 text-white rounded w-full bg-green-500 hover:bg-green-600 duration-300 transition-all">
+                                Parked
+                              </button>
+                            ) 
+                          }
+
+                          {
+                            isCancelable && (
+                              <button onClick={() => cancelBooking(booking._id)} className="bg-red-500 text-white py-2 rounded w-full hover:bg-red-600 duration-300 transition-all" >
+                                Cancel Booking
+                              </button>
+                            )
+                          }
+                        </div>
+                      )
+                    }            
                   </div>
                 )})
             }
@@ -152,4 +193,4 @@ const ActiveBooking = () => {
   )
 }
 
-export default ActiveBooking
+export default ActiveBooking;
