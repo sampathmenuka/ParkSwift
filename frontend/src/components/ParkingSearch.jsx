@@ -1,18 +1,64 @@
+import React, { useContext, useState } from 'react'
 import { Calendar, Clock, Search } from 'lucide-react'
-import React, { useState } from 'react'
-import DatePicker from "react-datepicker";
+import { AuthContext } from '../contexts/AuthContext'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 
 const ParkingSearch = () => {
 
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [startTime, setStartTime] = useState('10:00');
-  const [endTime, setEndTime] = useState('12:00');
+  const {backendUrl} = useContext(AuthContext);
 
-  const handleSearch = (e) => {
+  const navigate = useNavigate();
+  
+  const [filters, setFilters] = useState({
+    location: '',
+    startTime: '',
+    endTime: '',
+    date: ''
+  });
+  
+  
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFilters((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSearch = async (e) => {
     e.preventDefault();
-    console.log("Searching for parking with:", { location, date, startTime, endTime });
 
+    try {
+      const params = new URLSearchParams();
+
+      Object.entries(filters).forEach(([key, val]) => {
+        if (
+          val !== "" &&
+          val !== false &&
+          val !== null &&
+          val !== undefined
+        ) {
+          params.append(key, val);
+        }
+      });
+
+      const {data} = await axios.get(backendUrl + `/api/slots/?${params.toString()}`);
+
+      if (data.success) {
+        navigate(`/search?${params.toString()}`);
+        scrollTo(0, 0);
+      } else {
+        toast.error(data.message);
+      }
+
+    } catch (error) {
+        console.log(error)
+        toast.error(error.message);
+    }
   }
 
   return (
@@ -23,39 +69,51 @@ const ParkingSearch = () => {
             Where are you going?
           </label>
           <div className='relative flex items-center'>
-            <input type="text" id='location' placeholder='Enter address, city, or landmark...' className='w-full py-2 pr-3 rounded-md border pl-10 placeholder-gray-400 text-gray-800 focus:outline-none ring-2 ring-indigo-400' value={location} required onChange={e => setLocation(e.target.value)} />
+            <input type="text" id='location' name='location' placeholder='Enter address, city, or landmark...' className='w-full py-2 pr-3 rounded-md border pl-10 placeholder-gray-400 text-gray-800 focus:outline-none ring-2 ring-indigo-400' value={filters.location} required onChange={handleChange} />
+
             <Search className='w-4 h-4 absolute text-gray-400 left-3' />
           </div>
         </div>
 
         <div className='mb-6 md:mb-0 md:col-span-3'>
-          <label htmlFor='date' className='block text-sm font-medium text-gray-700 mb-1'>Date</label>
+          <label htmlFor='date' className='block text-sm font-medium text-gray-700 mb-1'>
+            Date
+          </label>
 
           <div className='relative flex items-center'>
-            <input id='date' className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 hover:bg-gray-50 transition-all' type="date" value={date} required onChange={e => setDate(e.target.value)} />
+            <input id='date' name='date' className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 hover:bg-gray-50 transition-all' type="date" value={filters.date} onChange={handleChange} />
 
             <Calendar className='w-4 h-4 absolute text-gray-400 left-3'/>
           </div>
         </div>
 
         <div className='mb-6 md:mb-0 md:col-span-2'>
-          <label className='block text-sm font-medium text-gray-700 mb-1' htmlFor="startTime">Start Time</label>
+          <label className='block text-sm font-medium text-gray-700 mb-1' htmlFor="startTime">
+            Start Time
+          </label>
           <div className='relative flex items-center'>
-            <input className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none hover:bg-gray-50 transition-all focus:ring-2 focus:ring-indigo-400' type="time" id='startTime' required value={startTime} onChange={e => setStartTime(e.target.value)} />
+            <input className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none hover:bg-gray-50 transition-all focus:ring-2 focus:ring-indigo-400' type="time" id='startTime' name='startTime' value={filters.startTime} onChange={handleChange} />
+
             <Clock className='w-4 h-4 absolute text-gray-400 left-3'/>
           </div>
         </div>
 
         <div className='mb-6 md:mb-0 md:col-span-2'>
-          <label className='block text-sm font-medium text-gray-700 mb-1' htmlFor="endTime">End Time</label>
+          <label className='block text-sm font-medium text-gray-700 mb-1' htmlFor="endTime">
+            End Time
+          </label>
+
           <div className='relative flex items-center'>
-            <input className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 hover:bg-gray-50 transition-all focus:ring-indigo-400' type="time" id='endTime' required value={endTime} onChange={e => setEndTime(e.target.value)} />
+            <input className='hide-icon w-full py-2 pr-3 pl-10 rounded-md border placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 hover:bg-gray-50 transition-all focus:ring-indigo-400' type="time" id='endTime' name='endTime' value={filters.endTime} onChange={handleChange} />
+
             <Clock className='w-4 h-4 absolute text-gray-400 left-3' />
           </div>
         </div>
 
         <div className='mt-4 md:mt-0 md:col-span-12'>
-          <button type='submit' className='w-full py-2 bg-gradient-to-r from-indigo-400 to-blue-700 text-white rounded-lg'>Find Parking</button>
+          <button type='submit' className='w-full py-2 bg-gradient-to-r from-indigo-400 to-blue-700 text-white rounded-lg'>
+            Find Parking
+          </button>
         </div>
       </form>
       
