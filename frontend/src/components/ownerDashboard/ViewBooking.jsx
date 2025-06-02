@@ -157,12 +157,12 @@ const ViewBooking = () => {
         <table className="min-w-full border divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr className='text-indigo-500'>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Customer</th>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Slot</th>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Date</th>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Time</th>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Amount</th>
-              <th className="text-left px-4 py-2 text-sm font-semibold">Status</th>
+              <th className="text-left px-4 py-2 min-w-[200px] text-sm font-semibold">Customer</th>
+              <th className="text-center px-4 py-2 min-w-[100px] text-sm font-semibold">Slot</th>
+              <th className="text-center px-4 py-2 min-w-[100px] text-sm font-semibold">Date</th>
+              <th className="text-center px-4 py-2 min-w-[100px] text-sm font-semibold">Time</th>
+              <th className="text-center px-4 py-2 min-w-[100px] text-sm font-semibold">Amount</th>
+              <th className="text-center px-4 py-2 min-w-[100px] text-sm font-semibold">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -175,15 +175,15 @@ const ViewBooking = () => {
             ) : (
               filtered.map(b => (
                 <tr key={b._id} className='text-gray-600 text-sm'>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 min-w-[200px] truncate">
                     <div className="font-medium text-gray-700">{(b.user.name).charAt(0).toUpperCase() + (b.user.name).slice(1).toLowerCase() }</div>
                     <div className="text-sm text-gray-500">{b.user.email}</div>
                   </td>
-                  <td className="px-4 py-2">{b.slot.location}</td>
-                  <td className="px-4 py-2">{moment(new Date(b.date).toLocaleDateString()).format('MMM DD, YYYY')}</td>
-                  <td className="px-4 py-2">{b.startTime} - {b.endTime}</td>
-                  <td className="px-4 py-2">LKR. {b.totalPayment.toFixed(2)}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 min-w-[150px] text-center">{b.slot.location}</td>
+                  <td className="px-4 py-2 min-w-[150px] text-center">{moment(new Date(b.date).toLocaleDateString()).format('MMM DD, YYYY')}</td>
+                  <td className="px-4 py-2 min-w-[150px] text-center">{b.startTime} - {b.endTime}</td>
+                  <td className="px-4 py-2 min-w-[150px] text-center">LKR. {b.totalPayment.toFixed(2)}</td>
+                  <td className="px-4 py-2 min-w-[150px] text-center">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${b.status === 'Confirmed' ? 'bg-blue-100 text-blue-800' : b.status === 'Completed' ? 'bg-green-100 text-green-800' : b.status === 'In-progress' ? 'bg-green-300 text-green-800' : 'bg-red-100 text-red-800' } `}>
                       {b.status}
                     </span>
