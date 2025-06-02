@@ -81,6 +81,10 @@ export const login = async (req, res) => {
 
     const user = await userModel.findOne({email, role})
 
+    if (user.status === "banned") {
+      return res.json({ success: false, message: "You are banned, you can't login. try another email to login"})
+    }
+
     if (!user) {
       return res.json({success: false, message: "Invalid Credentials"})
     }
