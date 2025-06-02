@@ -9,13 +9,14 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import TermsPrivacy from './pages/TermsPrivacy';
 import Login from './pages/Login';
-import AdminDashboard from './pages/AdminDashboard';
-import Payment from './pages/Payment';
 import SearchParking from './pages/SearchParking'
 import SlotBooking from './pages/SlotBooking'
 import NotFound from './pages/NotFound'
 import ResetPassword from './pages/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
+
+import StripeContainer from './components/StripeContainer';
+import Review from './pages/Review';
 
 import UserDashboard from './pages/UserDashboard';
 import ActiveBooking from './components/dashboard/ActiveBooking'
@@ -28,8 +29,13 @@ import ManageSlots from './components/ownerDashboard/ManageSlots'
 import ViewBooking from './components/ownerDashboard/ViewBooking'
 import Earnings from './components/ownerDashboard/Earnings'
 import OwnerProfile from './components/ownerDashboard/OwnerProfile';
-import StripeContainer from './components/StripeContainer';
-import Review from './pages/Review';
+
+import AdminDashboard from './pages/AdminDashboard';
+import Users from './components/adminDashboard/Users';
+import ParkingSlots from './components/adminDashboard/ParkingSlots';
+import Bookings from './components/adminDashboard/Bookings';
+import SystemLogs from './components/adminDashboard/SystemLogs';
+import Notifications from './components/adminDashboard/Notifications';
 
 
 const queryClient = new QueryClient();
@@ -72,8 +78,18 @@ const App = () => {
             <Route path='profile' element={<OwnerProfile />} />        
         </Route>
 
+        <Route path='/dashboard/admin' 
+          element={
+            <PrivateRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </PrivateRoute>} >
 
-        <Route path='/dashboard/admin' element={<AdminDashboard />} />
+            <Route path='users' element={<Users />} />
+            <Route path='parking-slots' element={<ParkingSlots />} />
+            <Route path='bookings' element={<Bookings />} />
+            <Route path='system-logs' element={<SystemLogs />} />        
+            <Route path='notifications' element={<Notifications />} />        
+        </Route>
         
         <Route path="/search" element = {<SearchParking />} />
         <Route path="/booking/:id" element = {<SlotBooking />} />
