@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
   licensePlate: {type: String},
   resetOtp: {type: String, default: ''},
   resetOtpExpireAt: {type: Number, default: 0},
+  status: {type: String, enum: ['active', 'banned'], default: 'active'},
+  createdAt: {type: Date, default: Date.now}
 })
 
 
