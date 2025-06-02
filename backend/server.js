@@ -16,6 +16,7 @@ import reviewRouter from './routes/reviewRoutes.js'
 import paymentRouter from './routes/paymentRoutes.js'
 import { stripeWebhook } from './controllers/paymentController.js'
 import availableCheckRouter from './routes/availabilityRoutes.js'
+import adminRouter from './routes/adminRoutes.js'
 
 
 const app = express();
@@ -59,6 +60,7 @@ app.use("/api/availability", availableCheckRouter);
 
 app.use('/api/payment', paymentRouter);
 
+app.use('/api/admin', adminRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}...`);

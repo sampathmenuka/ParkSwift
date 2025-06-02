@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import moment from 'moment'
 
 
 const Notification = () => {
@@ -145,11 +146,15 @@ const Notification = () => {
                           {(notification.type).charAt(0).toUpperCase() + (notification.type).slice(1).toLowerCase()}
                         </h3>
                         <p className='text-xs sm:text-sm font-base text-gray-400'>
-                          {new Date(notification.createdAt).toDateString() }
+                          {moment(new Date(notification.createdAt)).format('MMM DD, YYYY') }
                         </p>
                       </div> 
 
-                      <p className='text-gray-500 mb-4'>
+                      <p className='text-gray-600 mb-2'>
+                        {notification.title}
+                      </p>
+
+                      <p className='text-gray-500 mb-3'>
                         {notification.message}
                       </p> 
 
