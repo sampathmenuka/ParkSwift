@@ -16,11 +16,13 @@ const HowItWorks = () => {
         <div className='mt-12'>
           {/* For Drivers */}
           <div className='mb-12'>
-            <h3 className='text-2xl font-semibold text-indigo-500 mb-10 flex items-center justify-center'>
-              <Car className='mr-2 h-6 w-6' />
+            {/* Increased icon size (h-8 w-8) and text size (text-3xl) */}
+            <h3 className='text-3xl font-semibold text-indigo-500 mb-10 flex items-center justify-center'>
+              <Car className='mr-3 h-8 w-8' /> {/* Adjusted margin for larger icon */}
               <span>For Drivers</span>
             </h3>
             <div className='grid grid-cols-1 gap-8 sm:grid-cols-3'>
+              {/* Step 1 for Drivers */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   1
@@ -35,6 +37,7 @@ const HowItWorks = () => {
                 </div>
               </div>
 
+              {/* Step 2 for Drivers */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   2
@@ -49,6 +52,7 @@ const HowItWorks = () => {
                 </div>
               </div>
 
+              {/* Step 3 for Drivers */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   3
@@ -67,11 +71,13 @@ const HowItWorks = () => {
 
           {/* For Space Owners */}
           <div>
-            <h3 className='text-2xl font-semibold text-indigo-500 mb-10 flex items-center justify-center'>
-              <Home className='mr-2 h-6 w-6' />
+            {/* Increased icon size (h-8 w-8) and text size (text-3xl) */}
+            <h3 className='text-3xl font-semibold text-indigo-500 mb-10 flex items-center justify-center'>
+              <Home className='mr-3 h-8 w-8' /> {/* Adjusted margin for larger icon */}
               <span>For Space Owners</span>
             </h3>
             <div className='grid grid-cols-1 gap-8 sm:grid-cols-3'>
+              {/* Step 1 for Space Owners */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   1
@@ -86,6 +92,7 @@ const HowItWorks = () => {
                 </div>
               </div>
 
+              {/* Step 2 for Space Owners */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   2
@@ -100,6 +107,7 @@ const HowItWorks = () => {
                 </div>
               </div>
 
+              {/* Step 3 for Space Owners */}
               <div className='relative bg-white rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out'>
                 <div className='absolute -left-4 -top-4 h-10 w-10 bg-indigo-500 flex items-center justify-center rounded-full font-bold text-white text-lg hover:bg-indigo-600 transition-colors'>
                   3
