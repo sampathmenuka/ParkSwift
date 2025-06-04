@@ -11,43 +11,60 @@ const SystemLogs = () => {
   ]);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-white p-4 sm:p-6 rounded-lg shadow mx-2 sm:mx-0">
+      {/* Header Section */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
         <h3 className="text-lg font-semibold text-gray-900">System Logs</h3>
-        <div className="relative">
+        <div className="relative w-full sm:w-auto">
           <input
             type="text"
             placeholder="Search logs..."
-            className="pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="w-full pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm sm:text-base"
             aria-label="Search logs"
           />
-          <span className="absolute left-2 top-2 text-gray-400">🔍</span>
+          <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">🔍</span>
         </div>
       </div>
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="border-b">
-            <th className="text-left py-2 text-gray-700">Timestamp</th>
-            <th className="text-left py-2 text-gray-700">Action</th>
-            <th className="text-left py-2 text-gray-700">Description</th>
-            <th className="text-left py-2 text-gray-700">User</th>
-            <th className="text-left py-2 text-gray-700">IP Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          {logs.map((log, index) => (
-            <tr key={index} className="border-b">
-              <td className="py-2 text-gray-700">{log.timestamp}</td>
-              <td className="py-2 text-gray-700">{log.action}</td>
-              <td className="py-2 text-gray-700">{log.description}</td>
-              <td className="py-2 text-gray-700">{log.user}</td>
-              <td className="py-2 text-gray-700">{log.ip}</td>
+
+      {/* Table Section */}
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm sm:text-base">
+          <thead>
+            <tr className="border-b bg-gray-50">
+              <th className="text-left py-3 px-2 sm:px-4 text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">
+                Timestamp
+              </th>
+              <th className="text-left py-3 px-2 sm:px-4 text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">
+                Action
+              </th>
+              <th className="text-left py-3 px-2 sm:px-4 text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wider hidden sm:table-cell">
+                Description
+              </th>
+              <th className="text-left py-3 px-2 sm:px-4 text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wider hidden md:table-cell">
+                User
+              </th>
+              <th className="text-left py-3 px-2 sm:px-4 text-gray-700 font-semibold text-xs sm:text-sm uppercase tracking-wider hidden lg:table-cell">
+                IP Address
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="mt-4 text-right">
-        <button className="px-4 py-2 border rounded-lg text-sm text-gray-700 hover:bg-gray-50">
+          </thead>
+          <tbody>
+            {logs.map((log, index) => (
+              <tr key={index} className="border-b hover:bg-gray-50">
+                <td className="py-3 px-2 sm:px-4 text-gray-700 whitespace-nowrap">{log.timestamp}</td>
+                <td className="py-3 px-2 sm:px-4 text-gray-700 whitespace-nowrap">{log.action}</td>
+                <td className="py-3 px-2 sm:px-4 text-gray-700 hidden sm:table-cell">{log.description}</td>
+                <td className="py-3 px-2 sm:px-4 text-gray-700 hidden md:table-cell whitespace-nowrap">{log.user}</td>
+                <td className="py-3 px-2 sm:px-4 text-gray-700 hidden lg:table-cell whitespace-nowrap">{log.ip}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Export Button */}
+      <div className="mt-4 flex justify-end">
+        <button className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg text-xs sm:text-sm text-gray-700 hover:bg-gray-50 transition-colors">
           Export Logs
         </button>
       </div>
