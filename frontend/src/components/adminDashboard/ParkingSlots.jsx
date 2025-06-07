@@ -27,7 +27,7 @@ const ParkingSlots = () => {
           <input
             type="text"
             placeholder="Search slots..."
-            className="w-full pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm sm:text-base"
+            className="w-full pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
             aria-label="Search parking slots"
           />
           <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">🔍</span>
