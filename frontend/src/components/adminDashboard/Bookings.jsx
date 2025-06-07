@@ -17,14 +17,14 @@ const Bookings = () => {
             <input
               type="text"
               placeholder="Search bookings..."
-              className="pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="pl-8 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               aria-label="Search bookings"
             />
             <span className="absolute left-2 top-2 text-gray-400">🔍</span>
           </div>
           <input
             type="date"
-            className="pl-2 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="pl-2 pr-4 py-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             aria-label="Filter by date"
           />
         </div>
