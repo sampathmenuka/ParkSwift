@@ -79,6 +79,36 @@ This section allows users to find and reserve parking spaces based on their pref
 - **Additional Features**:
   - Search functionality to filter slots.
   - "Export Slot Data" button for data export.
+
+![Screenshot (167)](https://github.com/user-attachments/assets/034ca59a-6b10-44cb-b5b6-84ec99239f01)
+
+#### System Logs
+- **Details**:
+  - **Timestamp**: E.g., 11/15/2023, 10:23:45 AM; 11/15/2023, 5:40:01 PM.
+  - **Action**: E.g., USER_LOGIN, SLOT_CREATED, BOOKING_COMPLETED, ADMIN_ACTION, USER_LOGOUT.
+  - **Description**: E.g., "User logged in successfully," "New parking slot added," "Booking payment processed successfully," "User account banned," "User logged out."
+  - **User**: E.g., John Doe, Jane Smith, Michael Brown.
+  - **IP Address**: E.g., 192.168.1.1, 192.168.1.2.
+- **Additional Features**:
+  - Search functionality to filter logs.
+  - "Export Logs" button for data export.
+ 
+ ![Screenshot (166)](https://github.com/user-attachments/assets/b2d5a3db-2cf6-4d02-b1af-b4cb3d3e342b)
+
+  #### Bookings
+- **View All Bookings**:
+  - **Booking ID**: E.g., #1, #2, #3, #4.
+  - **Customer**: E.g., Alex Johnson, Maria Garcia, David Wilson, Sarah Miller.
+  - **Parking Slot**: E.g., Downtown Garage Spot, Waterfront Parking, Mall Covered Spot.
+  - **Date**: E.g., 2023-11-15, 2023-11-16.
+  - **Time**: E.g., 10:00 - 12:00, 14:00 - 16:00.
+  - **Amount**: E.g., $1.00, $8.00, $22.00, $7.50.
+  - **Payment**: E.g., paid, pending, failed.
+  - **Status**: E.g., confirmed, completed, cancelled.
+- **Additional Features**:
+  - Search functionality with date filter (mm/dd/yyyy).
+  - "Export Booking Data" button for data export.
+ 
   
 
 
