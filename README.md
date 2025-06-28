@@ -28,13 +28,16 @@ This section allows users to find and reserve parking spaces based on their pref
 - **Found**: Indicates the number of parking spaces found near the user (e.g., 5 parking spaces).
 
 
-### About ParkSwift
-This section provides an overview of the platform's mission and functionality.
+![Screenshot (159)](https://github.com/user-attachments/assets/bde7055a-e36d-415f-a29d-d904e175cd4d)
+
 
 #### Mission
 - ParkSwift was founded to eliminate the frustration of finding parking in busy urban areas.
 - The platform connects drivers with available parking spaces through a seamless digital platform.
 - Goals include reducing traffic congestion, saving time for drivers, and helping parking space owners monetize their unused spaces.
+
+  
+![Screenshot (160)](https://github.com/user-attachments/assets/723019f4-19f4-41e4-957c-4d6b515d0c64)
 
 #### How It Works
 - Connects two types of users:
