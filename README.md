@@ -45,3 +45,24 @@ This section allows users to find and reserve parking spaces based on their pref
   - **Parking Space Owners**: Can list their available spaces and earn income from them.
 - The system handles reservations, payments, and provides navigation to the parking spot.
 
+## Admin Panel Features
+
+![Screenshot (164)](https://github.com/user-attachments/assets/ebf87441-1dad-40ac-ab04-2374e62253da)
+
+#### Notifications
+- **Send New Notification**:
+  - **Fields**: Notification title, message, and target group (e.g., All Users, Slot Owners).
+  - **Delivery Methods**: In-App and Email.
+  - **Actions**: "Cancel" or "Send Notification" buttons.
+- **Notification Statistics**:
+  - **Total Sent**: 3 notifications.
+  - **To Users**: 1 notification.
+  - **To Owners**: 1 notification.
+- **Recently Sent Notifications**:
+  - **Title**: E.g., "System Maintenance," "New Feature: Multiple Vehicle Types."
+  - **Message**: Brief description (e.g., "The system will be down for maintenance," "Slot owners can now specify multiple vehicle types").
+  - **Target Group**: E.g., All Users, Slot Owners.
+  - **Sent At**: E.g., 11/10/2023, 8:30:00 AM; 11/15/2023, 6:00:00 PM.
+  - **Sent By**: E.g., Michael Brown.
+
+
