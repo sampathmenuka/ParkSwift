@@ -109,6 +109,9 @@ This section allows users to find and reserve parking spaces based on their pref
   - Search functionality with date filter (mm/dd/yyyy).
   - "Export Booking Data" button for data export.
  
+
+ ### License
+© 2025 ParkSwift. All rights reserved.
   
 
 
