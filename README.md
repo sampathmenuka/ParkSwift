@@ -1,6 +1,9 @@
 ## Project Overview
+
 **ParkSwift** is an online parking reservation system designed to simplify parking by connecting drivers with available parking spaces and enabling space owners to monetize their unused spots. The platform offers a seamless experience with features like instant booking, secure payments, and contactless entry.
 ![Screenshot (158)](https://github.com/user-attachments/assets/95f9d15c-90e6-4295-8703-c5d5445dc9e4)
+
+
 ### Search Parking Spaces
 This section allows users to find and reserve parking spaces based on their preferences.
 
@@ -25,5 +28,17 @@ This section allows users to find and reserve parking spaces based on their pref
 - **Found**: Indicates the number of parking spaces found near the user (e.g., 5 parking spaces).
 
 
+### About ParkSwift
+This section provides an overview of the platform's mission and functionality.
 
+#### Mission
+- ParkSwift was founded to eliminate the frustration of finding parking in busy urban areas.
+- The platform connects drivers with available parking spaces through a seamless digital platform.
+- Goals include reducing traffic congestion, saving time for drivers, and helping parking space owners monetize their unused spaces.
+
+#### How It Works
+- Connects two types of users:
+  - **Drivers**: Can search, book, and pay for parking spaces in advance or on the spot.
+  - **Parking Space Owners**: Can list their available spaces and earn income from them.
+- The system handles reservations, payments, and provides navigation to the parking spot.
 
