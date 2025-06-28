@@ -76,7 +76,15 @@ const Footer = () => {
               Get updates on new parking spots and features.
             </p>
             <form onSubmit={submitHandler} className='mt-4 sm:flex sm:max-w-md'>
-              <input type="email" name="email" value={email} placeholder='Enter your Email' className='w-full bg-gray-700 border border-transparent rounded-md py-2 px-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400' required onChange={e => setEmail(e.target.value)}/>
+              <input 
+            type="email" 
+            name="email" 
+            value={email} 
+            placeholder='Enter your Email' 
+            class='flex-grow bg-gray-700 border border-transparent rounded-l-md py-2 px-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400' 
+            required 
+            onChange={e => setEmail(e.target.value)}
+        />
               <div className='mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0'>
                 <button type='submit' className='w-full bg-indigo-500 hover:bg-indigo-600 transition-all duration-300 rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white'>Get in Touch</button>
               </div>
