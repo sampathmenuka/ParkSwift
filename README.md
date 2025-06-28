@@ -64,5 +64,21 @@ This section allows users to find and reserve parking spaces based on their pref
   - **Target Group**: E.g., All Users, Slot Owners.
   - **Sent At**: E.g., 11/10/2023, 8:30:00 AM; 11/15/2023, 6:00:00 PM.
   - **Sent By**: E.g., Michael Brown.
+ 
+    
+ ![Screenshot (165)](https://github.com/user-attachments/assets/374d89de-3e0c-4eff-b8fd-0133432dca8c)
+
+#### Manage Parking Slots
+- **Details**:
+  - **Name**: E.g., Downtown Garage Spot, Waterfront Parking, Mall Covered Spot, Stadium Parking.
+  - **Address**: E.g., 123 Main St, Downtown; 456 Harbor Dr, Seaside.
+  - **Type**: Covered or uncovered.
+  - **Hourly Rate**: E.g., $5.00, $4.00, $6.25, $7.00.
+  - **Status**: Active, pending, inactive.
+  - **Actions**: Deactivate, Approve, Reject, or Activate buttons.
+- **Additional Features**:
+  - Search functionality to filter slots.
+  - "Export Slot Data" button for data export.
+  
 
 
