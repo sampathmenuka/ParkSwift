@@ -7,6 +7,7 @@ import { AuthContext } from '../contexts/AuthContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import dayjs from 'dayjs'
+import moment from 'moment';
 
 const SlotBooking = () => {
 
@@ -170,8 +171,9 @@ const SlotBooking = () => {
                 </div>
               </div>
 
-              <p className='font-medium text-indigo-600 mb-2'>
-                Vehicle Allowed: <span className='text-gray-600'>{slot.vehicleTypeAllowed}</span>
+              <p className='font-medium text-indigo-600 mb-2 flex justify-between items-center'>
+                <span>Vehicle Allowed: <span className='text-gray-600'>{slot.vehicleTypeAllowed}</span></span>
+                <span className='font-medium text-green-500'>Date: {moment(slot.date).format("MMM D, YYYY")}</span>
               </p>  
 
               <p className='font-medium text-gray-800 mb-1'>Features:</p>  
