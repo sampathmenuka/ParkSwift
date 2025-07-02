@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
 import FeatureSection from '../components/FeatureSection';
 import HowItWorks from '../components/HowItWorks';
@@ -202,8 +201,8 @@ const Index = () => {
       {/* Hero section */}
       <div className='pt-16 pb-20 bg-gradient-to-br from-indigo-600 to-blue-900 min-h-screen overflow-x-hidden'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-          <h1 className='text-4xl font-extrabold tracking-wider sm:text-5xl md:text-7xl mt-20'>
-            <span className='block animated-text-gradient'>Parking made simple</span>
+          <h1 className='text-4xl font-extrabold tracking-wider sm:text-5xl md:text-7xl mt-16 sm:mt-24'>
+            <span className='block animated-text-gradient leading-tight'>Parking made simple</span>
             <span className='block animated-text-gradient-secondary'>anytime, anywhere</span>
           </h1>
           <p className='text-base mt-6 max-w-lg mx-auto sm:text-xl text-gray-200 sm:max-w-3xl font-light'>
