@@ -25,7 +25,7 @@ const port = 4000 || process.env.PORT;
 connectDB();
 connectCloudinary();
 
-const allowedOrigins = ['https://parkswift-frontend.onrender.com']
+const allowedOrigins = ['http://localhost:5173']
 app.use(cors({origin: allowedOrigins, credentials: true}));
 
 app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), stripeWebhook);
